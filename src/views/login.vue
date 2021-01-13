@@ -22,14 +22,25 @@
         methods: {
             login() {
                 if(this.input.username != "" && this.input.password != "") {
-                    if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
-                        this.$emit("authenticated", true);
-                        this.$router.replace({ name: "secure" });
-                    } else {
-                        console.log("password is incorrect");
-                    }
+                    console.log(this.$parent.mockAccount)
+                    // if mockAccount is an Array
+                    this.$parent.mockAccount.forEach(item => {
+                        if(this.input.username == item.username && this.input.password == item.password ) {
+                            this.$emit("authenticated", true)
+                            this.$router.replace({ name: "secure" })
+                        } else {
+                            console.log('User not available')
+                        }
+                    })
+
+                    // if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
+                    //     this.$emit("authenticated", true)
+                    //     this.$router.replace({ name: "secure" })
+                    // } else {
+                    //     console.log("password is incorrect")
+                    // }
                 } else {
-                    console.log("must be present");
+                    console.log("must be present")
                 }
             }
         }
