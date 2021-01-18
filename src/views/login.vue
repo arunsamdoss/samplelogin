@@ -23,12 +23,19 @@
             login() {
                 if(this.input.username != "" && this.input.password != "") {
                     console.log(this.$parent.mockAccount)
+        
+                
                     // if mockAccount is an Array
+                    
                     this.$parent.mockAccount.forEach(item => {
+                        
                         if(this.input.username == item.username && this.input.password == item.password ) {
                             this.$emit("authenticated", true)
                             this.$router.replace({ name: "secure" })
-                        } else {
+                            this.$cookies.get(this.input.username)
+                            
+                            
+                            } else {
                             console.log('User not available')
                         }
                     })
@@ -39,10 +46,30 @@
                     // } else {
                     //     console.log("password is incorrect")
                     // }
-                } else {
+                } 
+                else {
                     console.log("must be present")
                 }
             }
+    //           onSubmit() {
+    // let data = { 
+    //   email: this.email,
+    //   password: this.password
+
+    // }
+    //   users(data)
+    //       .then(res=>{
+    //         this.$cookie.set('token',res.data.token);
+    //       })
+    //       .catch(function(res) {
+    //         if(res instanceof Error) {
+    //           console.log(res.message);
+    //         } else {
+    //           console.log(res.data);
+    //         }
+    //       });
+         
+    // }
         }
     }
 </script>
